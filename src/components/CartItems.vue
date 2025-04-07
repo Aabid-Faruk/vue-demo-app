@@ -18,7 +18,6 @@ const addItem = (item) => {
   const product = products.value.find((product) => product.id === item.id)
   if (product) {
     product.quantity += 1
-    console.log(products.value)
     localStorage.setItem('cart', JSON.stringify(products.value))
     updateCartCount()
   }

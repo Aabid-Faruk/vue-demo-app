@@ -1,10 +1,14 @@
 <script setup>
+import { useCartCounterStore } from '@/stores/counter'
+import { storeToRefs } from 'pinia'
 import { Button, InputText, Menubar } from 'primevue'
-import { inject } from 'vue'
 import { RouterLink } from 'vue-router'
 
 // const { cartCount, displayCart, hideCart } = defineProps(['cartCount', 'displayCart', 'hideCart'])
-const { cartCount } = inject('cartCount')
+// const { cartCount } = inject('cartCount')
+
+const store = useCartCounterStore()
+const { count: cartCount } = storeToRefs(store)
 </script>
 <template>
   <Menubar>

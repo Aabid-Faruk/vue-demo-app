@@ -1,21 +1,28 @@
 <script setup>
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, provide } from 'vue'
 import MenuBar from './components/MenuBar.vue'
 // import ProductList from './components/ProductList.vue'
 // import CartItems from './components/CartItems.vue'
+import { storeToRefs } from 'pinia'
 import { RouterView } from 'vue-router'
+import { useCartCounterStore } from './stores/counter'
 
-const cartCount = ref(0)
+const store = useCartCounterStore()
+const { count: cartCount } = storeToRefs(store)
+const { updateCartCount } = store
+// console.log(updateCartCount)
+
+// const cartCount = ref(0)
 // const showCart = ref(false)
 
 // const displayCart = () => (showCart.value = true)
 
 // const hideCart = () => (showCart.value = false)
 
-const updateCartCount = () => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || []
-  cartCount.value = cart.reduce((acc, item) => acc + item.quantity, 0)
-}
+// const updateCartCount = () => {
+//   let cart = JSON.parse(localStorage.getItem('cart')) || []
+//   cartCount.value = cart.reduce((acc, item) => acc + item.quantity, 0)
+// }
 
 provide('cartCount', {
   cartCount,
